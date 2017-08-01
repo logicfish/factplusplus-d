@@ -38,60 +38,64 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 //C     extern "C" {
 //C     #endif
 
+import std.typecons;
+import core.stdc.stdarg;
+
 /* type declarations */
 
-//C     #define DECLARE_STRUCT(name) typedef struct name ## _st name
+//C     #define DECLARERUCT(name) typedef struct name ##  name
 /* FaCT++ kernel */
-//C     DECLARE_STRUCT(fact_reasoning_kernel);
+//C     DECLARERUCT(fact_reasoning_kernel);
 extern (C):
-alias fact_reasoning_kernel_st fact_reasoning_kernel;
+//alias fact_reasoning_kernel fact_reasoning_kernel;
+alias fact_reasoning_kernel = Typedef!(void*);
 /* progress monitor */
-//C     DECLARE_STRUCT(fact_progress_monitor);
-alias fact_progress_monitor_st fact_progress_monitor;
+//C     DECLARERUCT(fact_progress_monitor);
+alias fact_progress_monitor = Typedef!(void*); //progress_monitor;
 /* axiom */
-//C     DECLARE_STRUCT(fact_axiom);
-alias fact_axiom_st fact_axiom;
+//C     DECLARERUCT(fact_axiom);
+alias fact_axiom = Typedef!(void*); //axiom;
 /* expression */
-//C     DECLARE_STRUCT(fact_expression);
-alias fact_expression_st fact_expression;
+//C     DECLARERUCT(fact_expression);
+alias fact_expression = Typedef!(void*); //expression;
 /* concept expression */
-//C     DECLARE_STRUCT(fact_concept_expression);
-alias fact_concept_expression_st fact_concept_expression;
+//C     DECLARERUCT(fact_concept_expression);
+alias fact_concept_expression = Typedef!(void*); //concept_expression;
 /* data- or object-role expression */
-//C     DECLARE_STRUCT(fact_role_expression);
-alias fact_role_expression_st fact_role_expression;
+//C     DECLARERUCT(fact_role_expression);
+alias fact_role_expression = Typedef!(void*); //role_expression;
 /* object role expression */
-//C     DECLARE_STRUCT(fact_o_role_expression);
-alias fact_o_role_expression_st fact_o_role_expression;
+//C     DECLARERUCT(fact_o_role_expression);
+alias fact_o_role_expression = Typedef!(void*); //o_role_expression;
 /* complex object role expression */
-//C     DECLARE_STRUCT(fact_o_role_complex_expression);
-alias fact_o_role_complex_expression_st fact_o_role_complex_expression;
+//C     DECLARERUCT(fact_o_role_complex_expression);
+alias fact_o_role_complex_expression = Typedef!(void*); //o_role_complex_expression;
 /* data role expression */
-//C     DECLARE_STRUCT(fact_d_role_expression);
-alias fact_d_role_expression_st fact_d_role_expression;
+//C     DECLARERUCT(fact_d_role_expression);
+alias fact_d_role_expression = Typedef!(void*); //d_role_expression;
 /* individual expression */
-//C     DECLARE_STRUCT(fact_individual_expression);
-alias fact_individual_expression_st fact_individual_expression;
+//C     DECLARERUCT(fact_individual_expression);
+alias fact_individual_expression = Typedef!(void*); //individual_expression;
 /* general data expression */
-//C     DECLARE_STRUCT(fact_data_expression);
-alias fact_data_expression_st fact_data_expression;
+//C     DECLARERUCT(fact_data_expression);
+alias fact_data_expression = Typedef!(void*); //data_expression;
 /* data type expression */
-//C     DECLARE_STRUCT(fact_data_type_expression);
-alias fact_data_type_expression_st fact_data_type_expression;
+//C     DECLARERUCT(fact_data_type_expression);
+alias fact_data_type_expression = Typedef!(void*); //data_type_expression;
 /* data value expression */
-//C     DECLARE_STRUCT(fact_data_value_expression);
-alias fact_data_value_expression_st fact_data_value_expression;
+//C     DECLARERUCT(fact_data_value_expression);
+alias fact_data_value_expression = Typedef!(void*); //data_value_expression;
 /* facet expression */
-//C     DECLARE_STRUCT(fact_facet_expression);
-alias fact_facet_expression_st fact_facet_expression;
+//C     DECLARERUCT(fact_facet_expression);
+alias fact_facet_expression = Typedef!(void*); //facet_expression;
 /* actor to traverse taxonomy */
-//C     DECLARE_STRUCT(fact_actor);
-alias fact_actor_st fact_actor;
+//C     DECLARERUCT(fact_actor);
+alias fact_actor = Typedef!(void*); //actor;
 
-//C     #undef DECLARE_STRUCT
+//C     #undef DECLARERUCT
 
 //C     FPP_EXPORT const char *fact_get_version ();
-char * fact_get_version(...);
+char * fact_get_version(va_list);
 
 //C     FPP_EXPORT fact_reasoning_kernel *fact_reasoning_kernel_new (void);
 fact_reasoning_kernel * fact_reasoning_kernel_new();
@@ -374,13 +378,13 @@ void fact_get_role_fillers (fact_reasoning_kernel *,
 int  fact_is_related(fact_reasoning_kernel *, fact_individual_expression *i, fact_o_role_expression *r, fact_individual_expression *j);
 
 //C     FPP_EXPORT fact_actor* fact_concept_actor_new();
-fact_actor * fact_concept_actor_new(...);
+fact_actor * fact_concept_actor_new(va_list);
 //C     FPP_EXPORT fact_actor* fact_individual_actor_new();
-fact_actor * fact_individual_actor_new(...);
+fact_actor * fact_individual_actor_new(va_list);
 //C     FPP_EXPORT fact_actor* fact_o_role_actor_new();
-fact_actor * fact_o_role_actor_new(...);
+fact_actor * fact_o_role_actor_new(va_list);
 //C     FPP_EXPORT fact_actor* fact_d_role_actor_new();
-fact_actor * fact_d_role_actor_new(...);
+fact_actor * fact_d_role_actor_new(va_list);
 //C     FPP_EXPORT void fact_actor_free(fact_actor*);
 void  fact_actor_free(fact_actor *);
 /* get 1-d NULL-terminated array of synonyms of the 1st entry(necessary for Equivalents, for example) */
@@ -522,8 +526,8 @@ fact_data_expression * fact_data_bottom(fact_reasoning_kernel *k);
 //C     FPP_EXPORT fact_data_type_expression* fact_data_type ( fact_reasoning_kernel *k,const char* name );
 fact_data_type_expression * fact_data_type(fact_reasoning_kernel *k, char *name);
 /* get basic string data type */
-//C     FPP_EXPORT fact_data_type_expression* fact_get_str_data_type ( fact_reasoning_kernel *k );
-fact_data_type_expression * fact_get_str_data_type(fact_reasoning_kernel *k);
+//C     FPP_EXPORT fact_data_type_expression* fact_getr_data_type ( fact_reasoning_kernel *k );
+fact_data_type_expression * fact_getr_data_type(fact_reasoning_kernel *k);
 /* get basic integer data type */
 //C     FPP_EXPORT fact_data_type_expression* fact_get_int_data_type ( fact_reasoning_kernel *k );
 fact_data_type_expression * fact_get_int_data_type(fact_reasoning_kernel *k);
