@@ -1,0 +1,9 @@
+{
+	"name": "factplusplus-d",
+	"authors": [
+		"Mark Fisher"
+	],
+	"description": "FaCT++ ported to D Language",
+	"copyright": "Copyright © 2017, Mark Fisher",
+	"license": "LGPL-2.1"
+}
