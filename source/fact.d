@@ -94,8 +94,8 @@ alias fact_actor = Typedef!(void*); //actor;
 
 //C     #undef DECLARERUCT
 
-//C     FPP_EXPORT const char *fact_get_version ();
-char * fact_get_version(va_list);
+//C     FPP_EXPORT const immutable(char)* fact_get_version ();
+immutable(char)*  fact_get_version(va_list);
 
 //C     FPP_EXPORT fact_reasoning_kernel *fact_reasoning_kernel_new (void);
 fact_reasoning_kernel * fact_reasoning_kernel_new();
@@ -120,11 +120,11 @@ void  fact_set_progress_monitor(fact_reasoning_kernel *, fact_progress_monitor *
 void  fact_set_verbose_output(fact_reasoning_kernel *, int value);
 
 //C     FPP_EXPORT void fact_set_top_bottom_role_names (fact_reasoning_kernel *,
-//C     		const char *top_b_role_name,
-//C     		const char *bot_b_role_name,
-//C     		const char *top_d_role_name,
-//C     		const char *bot_d_role_name);
-void  fact_set_top_bottom_role_names(fact_reasoning_kernel *, char *top_b_role_name, char *bot_b_role_name, char *top_d_role_name, char *bot_d_role_name);
+//C     		const immutable(char)* top_b_role_name,
+//C     		const immutable(char)* bot_b_role_name,
+//C     		const immutable(char)* top_d_role_name,
+//C     		const immutable(char)* bot_d_role_name);
+void  fact_set_top_bottom_role_names(fact_reasoning_kernel *, immutable(char)* top_b_role_name, immutable(char)* bot_b_role_name, immutable(char)* top_d_role_name, immutable(char)* bot_d_role_name);
 
 //C     FPP_EXPORT void fact_set_operation_timeout (fact_reasoning_kernel *,
 //C     		unsigned long timeout);
@@ -389,13 +389,13 @@ fact_actor * fact_d_role_actor_new(va_list);
 void  fact_actor_free(fact_actor *);
 /* get 1-d NULL-terminated array of synonyms of the 1st entry(necessary for Equivalents, for example) */
 //C     FPP_EXPORT const char** fact_get_synonyms ( fact_actor* );
-char ** fact_get_synonyms(fact_actor *);
+immutable(char)* * fact_get_synonyms(fact_actor *);
 /* get NULL-terminated 2D array of all required elements of the taxonomy */
 //C     FPP_EXPORT const char*** fact_get_elements_2d ( fact_actor* );
-char *** fact_get_elements_2d(fact_actor *);
+immutable(char)* ** fact_get_elements_2d(fact_actor *);
 /* get NULL-terminated 1D array of all required elements of the taxonomy */
 //C     FPP_EXPORT const char** fact_get_elements_1d ( fact_actor* );
-char ** fact_get_elements_1d(fact_actor *);
+immutable(char)* * fact_get_elements_1d(fact_actor *);
 
 /* opens new argument list */
 //C     FPP_EXPORT void fact_new_arg_list ( fact_reasoning_kernel *k );
@@ -416,7 +416,7 @@ fact_concept_expression * fact_top(fact_reasoning_kernel *k);
 fact_concept_expression * fact_bottom(fact_reasoning_kernel *k);
 /* get named concept */
 //C     FPP_EXPORT fact_concept_expression* fact_concept ( fact_reasoning_kernel *k,const char* name );
-fact_concept_expression * fact_concept(fact_reasoning_kernel *k, char *name);
+fact_concept_expression * fact_concept(fact_reasoning_kernel *k, immutable(char)* name);
 /* get negation of a concept c */
 //C     FPP_EXPORT fact_concept_expression* fact_not ( fact_reasoning_kernel *k,fact_concept_expression* c );
 fact_concept_expression * fact_not(fact_reasoning_kernel *k, fact_concept_expression *c);
@@ -475,7 +475,7 @@ fact_concept_expression * fact_d_cardinality(fact_reasoning_kernel *k, uint n, f
 
 /* get named individual */
 //C     FPP_EXPORT fact_individual_expression* fact_individual ( fact_reasoning_kernel *k,const char* name );
-fact_individual_expression * fact_individual(fact_reasoning_kernel *k, char *name);
+fact_individual_expression * fact_individual(fact_reasoning_kernel *k, immutable(char)* name);
 
 /* object roles */
 
@@ -487,7 +487,7 @@ fact_o_role_expression * fact_object_role_top(fact_reasoning_kernel *k);
 fact_o_role_expression * fact_object_role_bottom(fact_reasoning_kernel *k);
 /* get named object role */
 //C     FPP_EXPORT fact_o_role_expression* fact_object_role ( fact_reasoning_kernel *k,const char* name );
-fact_o_role_expression * fact_object_role(fact_reasoning_kernel *k, char *name);
+fact_o_role_expression * fact_object_role(fact_reasoning_kernel *k, immutable(char)* name);
 /* get an inverse of a given object role expression r */
 //C     FPP_EXPORT fact_o_role_expression* fact_inverse ( fact_reasoning_kernel *k,fact_o_role_expression* r );
 fact_o_role_expression * fact_inverse(fact_reasoning_kernel *k, fact_o_role_expression *r);
@@ -511,7 +511,7 @@ fact_d_role_expression * fact_data_role_top(fact_reasoning_kernel *k);
 fact_d_role_expression * fact_data_role_bottom(fact_reasoning_kernel *k);
 /* get named data role */
 //C     FPP_EXPORT fact_d_role_expression* fact_data_role ( fact_reasoning_kernel *k,const char* name );
-fact_d_role_expression * fact_data_role(fact_reasoning_kernel *k, char *name);
+fact_d_role_expression * fact_data_role(fact_reasoning_kernel *k, immutable(char)* name);
 
 /* data expressions */
 
@@ -524,7 +524,7 @@ fact_data_expression * fact_data_bottom(fact_reasoning_kernel *k);
 
 /* get named data type */
 //C     FPP_EXPORT fact_data_type_expression* fact_data_type ( fact_reasoning_kernel *k,const char* name );
-fact_data_type_expression * fact_data_type(fact_reasoning_kernel *k, char *name);
+fact_data_type_expression * fact_data_type(fact_reasoning_kernel *k, immutable(char)* name);
 /* get basic string data type */
 //C     FPP_EXPORT fact_data_type_expression* fact_getr_data_type ( fact_reasoning_kernel *k );
 fact_data_type_expression * fact_getr_data_type(fact_reasoning_kernel *k);
@@ -549,7 +549,7 @@ fact_data_type_expression * fact_restricted_type(fact_reasoning_kernel *k, fact_
 /* _f_iX_m_e!! now change the type to the basic type of the given one */
 /* _that is, value of a type positive_integer will be of a type _integer */
 //C     FPP_EXPORT fact_data_value_expression* fact_data_value ( fact_reasoning_kernel *k,const char* value, fact_data_type_expression* type );
-fact_data_value_expression * fact_data_value(fact_reasoning_kernel *k, char *value, fact_data_type_expression *type);
+fact_data_value_expression * fact_data_value(fact_reasoning_kernel *k, immutable(char)* value, fact_data_type_expression *type);
 /* get negation of a data expression e */
 //C     FPP_EXPORT fact_data_expression* fact_data_not ( fact_reasoning_kernel *k,fact_data_expression* e );
 fact_data_expression * fact_data_not(fact_reasoning_kernel *k, fact_data_expression *e);
