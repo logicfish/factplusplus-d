@@ -13,3 +13,12 @@ On Posix:
 
 dmd -Isource fact_test.d posix/bin64-debug/libfact.so
 LD_LIBRARY_PATH=posix/bin64-debug/ ./fact_test
+
+On Windows:
+
+dmd -m64 -Isource fact_test.d windows/bin64-debug/fact.lib
+copy windows/bin64-debug/fact.dll .
+fact_test.exe
+
+
+
