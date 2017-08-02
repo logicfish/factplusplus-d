@@ -22,3 +22,7 @@ copy windows/bin64-debug/fact.dll .
 
 
 
+dmd -m32mscoff -Isource fact_test.d windows/bin32-debug/fact.lib
+copy windows/bin32-debug/fact.dll .
+fact_test.exe
+
