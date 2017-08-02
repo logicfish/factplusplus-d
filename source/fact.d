@@ -41,6 +41,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 import std.typecons;
 import core.stdc.stdarg;
 
+/* variadic wrapper */
+extern(D):
+auto _fact_concept_actor_new(...) {
+	return fact_concept_actor_new(_argptr);
+}
+auto _fact_individual_actor_new(...) {
+	return fact_individual_actor_new(_argptr);
+}
+auto _fact_o_role_actor_new(...) {
+	return fact_o_role_actor_new(_argptr);
+}
+
 /* type declarations */
 
 //C     #define DECLARERUCT(name) typedef struct name ##  name
