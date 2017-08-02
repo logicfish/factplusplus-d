@@ -14,7 +14,7 @@ htod is used to re-create the header.  The typedefs and variadics are manually e
 
 On Posix:
 
-    dmd -Isource fact_test.d posix/bin64-debug/libfact.so
+    dmd -m64 fact_test.d source/fact.d posix/bin64-debug/libfact.so
     LD_LIBRARY_PATH=posix/bin64-debug/ ./fact_test
 
 On Windows 64:

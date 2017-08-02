@@ -22,16 +22,6 @@ void print2Darray ( const char*** names ) {
 	writefln("]\n");
 }
 
-auto _fact_concept_actor_new(...) {
-	return fact_concept_actor_new(_argptr);
-}
-auto _fact_individual_actor_new(...) {
-	return fact_individual_actor_new(_argptr);
-}
-auto _fact_o_role_actor_new(...) {
-	return fact_o_role_actor_new(_argptr);
-}
-
 int main ( ) {
 	puts("Starting FaCT++ C interface tests");
 	// create kernel
