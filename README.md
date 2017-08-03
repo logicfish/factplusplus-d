@@ -1,21 +1,21 @@
-# factplusplus-d
-FaCT++ import to dlang
+# factplusplus-d - FaCT++ imported to [D Language](http://dlang.org)
 
 [FaCT++](http://owl.man.ac.uk/factplusplus/)
 > FaCT++
 > FaCT++ is the new generation of the well-known FaCT OWL-DL reasoner. FaCT++ uses the established FaCT algorithms, but with a different internal architecture. Additionally, FaCT++ is implementated using > C++ in order to create a more efficient software tool, and to maximise portability. New optimisations have also been introduced, and some new features added.
 
-[FaCT++ Page at man.ac.uk](http://owl.cs.manchester.ac.uk/tools/fact/)
+[FaCT++ Page at Manchester University](http://owl.cs.manchester.ac.uk/tools/fact/)
 
+#### Notes
 
-The OWL-API part is not done - only the reasoner itself (FaCT++.C in the source tree).
+The OWL-API part is not done - only the standalone reasoner is included. (See the "FaCT++.C" folder in the source tree).
 
-### To use in your dub project
+#### To use in your dub project
 
 Add the dependency "factplusplus-d", and put the dynamic library on your executable path.
 
 
-### To compile fact_test.d:
+#### To compile fact_test.d:
 
 On Posix:
 
