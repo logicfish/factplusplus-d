@@ -5,5 +5,26 @@
 	],
 	"description": "FaCT++ ported to D Language",
 	"copyright": "Copyright © 2017, Mark Fisher",
-	"license": "LGPL-2.1"
+	"license": "LGPL-2.1",
+	"configurations" : [
+		{
+			"name" : "win64",
+			"copyFiles" : [
+				"windows/bin64-debug/fact.lib",
+				"windows/bin64-debug/fact.dll"
+			],
+			"libs" : [ "fact" ],
+			"platforms" : [ "windows-x86_64" ]
+		},
+		{
+			"name" : "win32",
+			"copyFiles" : [
+				"windows/bin32-debug/fact.lib",
+				"windows/bin32-debug/fact.dll"
+			],
+			"libs" : [ "fact" ],
+			"dflags" : [ "-m32mscoff" ],
+			"platforms" : [ "windows-x86" ]
+		}
+	]
 }

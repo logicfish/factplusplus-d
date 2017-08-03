@@ -12,7 +12,7 @@ The OWL-API part is not done - only the standalone reasoner is included. (See th
 
 #### To use in your dub project
 
-Add the dependency "factplusplus-d", and put the dynamic library on your executable path.
+Add the dependency "factplusplus-d", and put the libraries on your linker path.
 
 
 #### To compile fact_test.d:
