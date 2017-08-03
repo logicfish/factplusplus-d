@@ -50,7 +50,7 @@ On Windows 32:
 Download [FaCT++ sources](https://bitbucket.org/dtsarkov/factplusplus) from bitbucket.
 Then build using cmake.  
 
+The libraries are built in the _FaCT++.C_ folder.
+
 ## D Import
 _htod_ is used to re-create the header.  The typedefs and variadics are manually edited to use _std.typecons_ and _core.stdc.stdarg_ respectively.
-
-The libraries are built in the _FaCT++.C_ folder.
