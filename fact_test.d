@@ -6,7 +6,7 @@ import std.stdio,
 import core.stdc.stdarg;
 
 void print2Darray ( const char*** names ) {
-	writefln("[\n");
+	writefln("[");
 	int n=0;
 	const (char*)* syns = names[0];
 	while ( syns != null )
@@ -16,10 +16,10 @@ void print2Darray ( const char*** names ) {
 		const (char)* name;
 		while ( (name = syns[m++]) != null)
 			printf("%s ", name);
-		writefln("]\n");
+		writefln("]");
 		syns=names[++n];
 	}
-	writefln("]\n");
+	writefln("]");
 }
 
 int main ( ) {
