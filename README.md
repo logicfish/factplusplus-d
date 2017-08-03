@@ -51,5 +51,6 @@ Download [FaCT++ sources](https://bitbucket.org/dtsarkov/factplusplus) from bitb
 Then build using cmake.  
 
 ## D Import
-htod is used to re-create the header.  The typedefs and variadics are manually edited to use std.typecons and core.stdc.stdarg respectively.
-The libraries are built in the FaCT++.C folder.
+_htod_ is used to re-create the header.  The typedefs and variadics are manually edited to use _std.typecons_ and _core.stdc.stdarg_ respectively.
+
+The libraries are built in the _FaCT++.C_ folder.
