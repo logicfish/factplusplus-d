@@ -34,6 +34,89 @@ else:
 }
 
 unittest {
+/*
+
+
+https://bitbucket.org/wrobell/factplusplus/src/05a702533ef4e13a2466cd1df7379b18a37f9177/factpp/examples/test-object-cardinality.py
+
+
+reasoner = factpp.Reasoner()
+
+
+cls_a = reasoner.concept('CLS-A')
+cls_b = reasoner.concept('CLS-B')
+reasoner.disjoint_concepts([cls_a, cls_b])
+
+
+r = reasoner.object_role('R')
+reasoner.set_o_domain(r, cls_a)
+reasoner.set_o_range(r, cls_b)
+
+
+c = reasoner.individual('C')
+reasoner.instance_of(c, cls_a)
+
+
+restriction_max_one_cls_b = reasoner.max_o_cardinality(1, r, cls_b)
+reasoner.implies_concepts(cls_a, restriction_max_one_cls_b)
+
+
+d = reasoner.individual('D')
+reasoner.instance_of(d, cls_b)
+reasoner.related_to(c, r, d)
+print('consistent after 1st instance:', reasoner.is_consistent())
+
+
+# add another individual to class C, making ontology inconsistent
+x = reasoner.individual('X')
+reasoner.instance_of(x, cls_b)
+reasoner.related_to(c, r, x)
+reasoner.different_individuals([d, x])
+print('consistent after 2nd instance:', reasoner.is_consistent())
+
+# add another individual to class C, making ontology inconsistent
+x = reasoner.individual('X')
+reasoner.instance_of(x, cls_b)
+reasoner.related_to(c, r, x)
+reasoner.different_individuals([d, x])
+print('consistent after 2nd instance:', reasoner.is_consistent())
+
+*/
+  fact_reasoning_kernel* k = fact_reasoning_kernel_new();
+  fact_concept_expression* cls_a = k.fact_concept("CLS-A");
+  fact_concept_expression* cls_b = k.fact_concept("CLS-B");
+  k.fact_new_arg_list();
+  k.fact_add_arg(cls_a);
+  k.fact_add_arg(cls_b);
+  k.fact_disjoint_concepts();
+
+  fact_o_role_expression* r = k.fact_object_role("R");
+  k.fact_set_o_domain(r,cls_a);
+  k.fact_set_o_range(r,cls_b);
+  
+  auto c = k.fact_individual("C");
+  k.fact_instance_of(c, cls_a);
+  
+  auto restriction_max_one_cls_b = k.fact_o_max_cardinality(1, r, cls_b);
+  k.fact_implies_concepts(cls_a, restriction_max_one_cls_b);
+  
+  auto d = k.fact_individual("D");
+  k.fact_instance_of(d, cls_b);
+  k.fact_related_to(c,r,d);
+  assert(k.fact_is_kb_consistent());
+  
+  auto x = k.fact_individual("X");
+  k.fact_instance_of(x,cls_b);
+  k.fact_related_to(c,r,x);
+  
+  k.fact_new_arg_list();
+  k.fact_add_arg(d);
+  k.fact_add_arg(x);
+  k.fact_process_different();
+  assert(!k.fact_is_kb_consistent());
+}
+
+unittest {
   // Test property
   // https://bitbucket.org/wrobell/factplusplus/src/05a702533ef4e13a2466cd1df7379b18a37f9177/factpp/examples/test-property.py
   fact_reasoning_kernel* k = fact_reasoning_kernel_new();
